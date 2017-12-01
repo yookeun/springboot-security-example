@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<appender name="consoleAppender" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<Pattern>.%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg %n
+			</Pattern>
+		</encoder>
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+			<level>DEBUG</level>
+		</filter>
+	</appender>
+
+  	<appender name="dailyRollingFileAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<File>${LOG_FILE}</File>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+		    <!-- daily rollover -->
+			<FileNamePattern>${LOG_FILE}.%d{yyyy-MM-dd}.%i.log</FileNamePattern>            
+			<!-- keep 30 days' worth of history -->
+			<maxHistory>30</maxHistory>
+			<totalSizeCap>10GB</totalSizeCap>		
+			<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>100MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>				
+		</rollingPolicy>
+
+		<encoder>
+			<Pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{35} - %msg %n</Pattern>
+		</encoder> 	    
+  	</appender>
+  	
+	<logger name="com.funzin.bigbang" additivity="false">
+	    <level value="INFO" />
+		<appender-ref ref="dailyRollingFileAppender"/>
+		<appender-ref ref="consoleAppender" />
+	</logger>
+	<logger name="java.sql" additivity="false">
+	    <level value="DEBUG" />
+		<appender-ref ref="dailyRollingFileAppender"/>		
+		<appender-ref ref="consoleAppender" />
+	</logger>
+	<root>
+		<level value="ERROR" />
+		<appender-ref ref="consoleAppender" />
+	</root>
+</configuration>

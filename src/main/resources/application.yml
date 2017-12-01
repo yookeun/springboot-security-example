@@ -1,0 +1,23 @@
+spring:
+  profiles:     
+    active: local
+    
+---
+ 
+spring:
+  profiles: local
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/TEST_DB?useUnicode=true&characterEncoding=utf8&useSSL=false
+    username: root
+    password: 1234
+    hikari:
+      pool-name: bigbangWeb
+      maximum-pool-size: 10
+      max-lifetime: 30
+      
+#logging:
+# file: /home/ykkim/logs/bigbang/bigbang-web.log
+# pattern:
+#   file: /home:/ykkim/logs/bigbang/bigbang-web.%d{yyyy-MM-dd}.%i.log               
