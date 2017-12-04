@@ -6,7 +6,7 @@
     <select id="selectUserForLogin" resultType="user" parameterType="String">
 		SELECT /* +  userMapper.selectUserForLogin + */
 		id, username, password, role 
-		FROM user
+		FROM test_user
 		WHERE username = #{username}      
     </select>    
        

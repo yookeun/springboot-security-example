@@ -25,6 +25,5 @@ public class ArgumentHandler implements HandlerMethodArgumentResolver {
             return authentication.getPrincipal();
         }
         return null;
-
     }
 }

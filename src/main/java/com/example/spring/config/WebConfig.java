@@ -11,6 +11,7 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
+import org.springframework.web.servlet.view.JstlView;
 
 @Configuration
 public class WebConfig extends WebMvcConfigurerAdapter {
@@ -18,11 +19,12 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 	 @Override
 	    public void addResourceHandlers(ResourceHandlerRegistry registry) {
 	        registry.addResourceHandler("/resources/**")
-	                .addResourceLocations("/WEB-INF/resources/");	    }
+	                .addResourceLocations("/WEB-INF/resources/");	    
+	    }
 	 
 	   @Override
-	    public void addArgumentResolvers(List<HandlerMethodArgumentResolver> argumentResolvers) {
-	        super.addArgumentResolvers(argumentResolvers);
+	    public void addArgumentResolvers(List<HandlerMethodArgumentResolver> argumentResolvers) {	       
+		   argumentResolvers.add(new ArgumentHandler());
 	    }
 
 	    @Override
@@ -32,7 +34,9 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 	    
 		@Override
 		public void addViewControllers(ViewControllerRegistry registry) {
+			//registry.addViewController("/").setViewName("login");
 			registry.addViewController("/login").setViewName("login");
+			
 		}
 
 	    @Bean
@@ -40,7 +44,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 	        InternalResourceViewResolver resolver = new InternalResourceViewResolver();
 	        resolver.setPrefix("/WEB-INF/views/");
 	        resolver.setSuffix(".jsp");
-	        resolver.setViewClass(org.springframework.web.servlet.view.JstlView.class);
+	        resolver.setViewClass(JstlView.class);
 	        return resolver;
 	    }
 	    

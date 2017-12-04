@@ -2,7 +2,6 @@ package com.example.spring.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -23,7 +22,6 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
-@ComponentScan("com.funzin")
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
@@ -50,22 +48,27 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         auth.authenticationProvider(authenticationProvider);
     }
 
-
-
+    
     @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests().anyRequest().authenticated().and().formLogin().loginPage("/login")
-                .loginProcessingUrl("/login").failureUrl("/login?error=true").successHandler(loginSuccessHandler)
-                .usernameParameter("username").passwordParameter("password").permitAll().and().logout().deleteCookies("remove")
-                .invalidateHttpSession(true).logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/");
-    }
+    protected void configure(HttpSecurity http) throws  Exception {
+        http.authorizeRequests()
+        .anyRequest()
+        .authenticated()
+        .and()
+        .formLogin()
+        .loginPage("/login")
+        .loginProcessingUrl("/login")
+        .failureUrl("/login?error=true")
+        .successHandler(loginSuccessHandler)
+        .usernameParameter("username").passwordParameter("password").permitAll().and().logout().deleteCookies("remove")
+        .invalidateHttpSession(true).logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+        .logoutSuccessUrl("/");
+    }    
 
 
     @Override
     public void configure(WebSecurity web) throws Exception {
         web.ignoring().antMatchers("/resources/**");
     }
-
 
 }

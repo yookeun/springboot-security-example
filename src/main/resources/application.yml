@@ -18,6 +18,6 @@ spring:
       max-lifetime: 30
       
 #logging:
-# file: /home/ykkim/logs/bigbang/bigbang-web.log
-# pattern:
-#   file: /home:/ykkim/logs/bigbang/bigbang-web.%d{yyyy-MM-dd}.%i.log               
+#  file: /home/ykkim/logs/springboot-security-example.log  
+#  pattern:
+#    file: /home:/ykkim/logs/springboot-security-example.%d{yyyy-MM-dd}.%i.log               

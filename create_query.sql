@@ -13,5 +13,8 @@ CREATE TABLE test_user
   UNIQUE KEY(username)
 );
 
-INSERT INTO test_user (username, password, role) VALUES('admin', 'admin', 'ROLE_ADMIN');
-INSERT INTO test_user (username, password, role) VALUES('test', 'test', 'ROLE_USER');
+#패스워드: 1234
+INSERT INTO test_user (username, password, role) VALUES('admin', '$2a$10$nRKNz3Rf/dNRayko6SsRPu50dLb.XzOCVH3kWNP/J8oWZqR2zuFJS', 'ROLE_ADMIN');
+
+#패스워드: 1234
+INSERT INTO test_user (username, password, role) VALUES('test', '$2a$10$nRKNz3Rf/dNRayko6SsRPu50dLb.XzOCVH3kWNP/J8oWZqR2zuFJS', 'ROLE_USER');
