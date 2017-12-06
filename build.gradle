@@ -33,7 +33,7 @@ dependencies {
 	compile 'com.zaxxer:HikariCP:2.6.2'
 	runtime('mysql:mysql-connector-java')
 	compileOnly('org.projectlombok:lombok')
-	providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')	
+	compile('org.springframework.boot:spring-boot-starter-tomcat')
 	compile('org.springframework.boot:spring-boot-starter-security')
 
 	compile('org.apache.tomcat.embed:tomcat-embed-jasper')	
